@@ -3,10 +3,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <name>Camunda Process Solution</name>
-  <description>A process solution for Camunda Platform 8</description>
-  <groupId>org.example.camunda.process.solution</groupId>
-  <artifactId>camunda-process-solution</artifactId>
+  <name>Camunda 8 Playground Norman</name>
+  <description>A playground for testing stuff</description>
+  <groupId>org.camunda.consulting</groupId>
+  <artifactId>C8_Learnings</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
   <parent>
@@ -51,7 +51,7 @@
       <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
       <version>2.2.0</version>
    </dependency>
-   
+
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
@@ -61,6 +61,12 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.22</version>
+      <scope>compile</scope>
     </dependency>
 
   </dependencies>

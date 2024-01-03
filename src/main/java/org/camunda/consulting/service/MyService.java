@@ -1,4 +1,4 @@
-package org.example.camunda.process.solution.service;
+package org.camunda.consulting.service;
 
 import org.springframework.stereotype.Service;
 

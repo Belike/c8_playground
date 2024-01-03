@@ -1,4 +1,4 @@
-package org.example.camunda.process.solution;
+package org.camunda.consulting;
 
 public class ProcessConstants {
 

@@ -1,4 +1,4 @@
-package org.example.camunda.process.solution;
+package org.camunda.consulting;
 
 import io.camunda.zeebe.spring.client.annotation.Deployment;
 import org.springframework.boot.SpringApplication;
