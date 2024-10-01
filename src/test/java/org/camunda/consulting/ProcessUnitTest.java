@@ -7,11 +7,11 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import io.camunda.zeebe.process.test.api.ZeebeTestEngine;
+import io.camunda.zeebe.process.test.extension.ZeebeProcessTest;
 import io.camunda.zeebe.process.test.inspections.InspectionUtility;
 import io.camunda.zeebe.process.test.inspections.model.InspectedProcessInstance;
 import io.camunda.zeebe.spring.test.ZeebeSpringTest;
 import java.time.Duration;
-
 import org.camunda.consulting.facade.ProcessController;
 import org.camunda.consulting.service.MyService;
 import org.junit.jupiter.api.Test;

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1i4tszd" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.23.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0">
+  <bpmn:process id="happinessRandomizer" name="Happiness Randomizer" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Happiness Randomizer">
+      <bpmn:outgoing>Flow_0hpe14c</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0hpe14c" sourceRef="StartEvent_1" targetRef="InvokeBooleanRandomizer_ServiceTask" />
+    <bpmn:exclusiveGateway id="Gateway_0lj8v22" name="True or False?">
+      <bpmn:incoming>Flow_0w39ylh</bpmn:incoming>
+      <bpmn:outgoing>Flow_1sbiucf</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1l1uqja</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0m0qqht" sourceRef="InvokeBooleanRandomizer_ServiceTask" targetRef="fake-call-activity" />
+    <bpmn:sequenceFlow id="Flow_1sbiucf" sourceRef="Gateway_0lj8v22" targetRef="InvokeHappiness_ServiceTask">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=Happy</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="InvokeBooleanRandomizer_ServiceTask" name="Invoke Boolean Randomizer">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="randomboolean" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0hpe14c</bpmn:incoming>
+      <bpmn:outgoing>Flow_0m0qqht</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1l1uqja" sourceRef="Gateway_0lj8v22" targetRef="InvokeUnhappiness_ServiceTask">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(Happy)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="Event_0o0imsp" name="Happiness invoked">
+      <bpmn:incoming>Flow_1heh8g5</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1p0xfz6" sourceRef="InvokeHappiness_ServiceTask" targetRef="Activity_10zzpm8" />
+    <bpmn:serviceTask id="InvokeHappiness_ServiceTask" name="Invoke Happiness">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="invokeHappiness" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1sbiucf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1p0xfz6</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="InvokeUnhappiness_ServiceTask" name="Invoke Unhappiness">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="invokeUnhappiness" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1l1uqja</bpmn:incoming>
+      <bpmn:outgoing>Flow_1mt9m8e</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0vja6rb" name="Unhappiness invoked">
+      <bpmn:incoming>Flow_1mt9m8e</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1mt9m8e" sourceRef="InvokeUnhappiness_ServiceTask" targetRef="Event_0vja6rb" />
+    <bpmn:sequenceFlow id="Flow_0w39ylh" sourceRef="fake-call-activity" targetRef="Gateway_0lj8v22" />
+    <bpmn:callActivity id="fake-call-activity" name="call activity">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="fake-call-activity" propagateAllChildVariables="false" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0m0qqht</bpmn:incoming>
+      <bpmn:outgoing>Flow_0w39ylh</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_1heh8g5" sourceRef="Activity_10zzpm8" targetRef="Event_0o0imsp" />
+    <bpmn:callActivity id="Activity_10zzpm8">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="test" propagateAllChildVariables="false" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1p0xfz6</bpmn:incoming>
+      <bpmn:outgoing>Flow_1heh8g5</bpmn:outgoing>
+    </bpmn:callActivity>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="happinessRandomizer">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="109" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="167" y="152" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0lj8v22_di" bpmnElement="Gateway_0lj8v22" isMarkerVisible="true">
+        <dc:Bounds x="595" y="102" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="584" y="78" width="72" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11e2jo8_di" bpmnElement="InvokeBooleanRandomizer_ServiceTask">
+        <dc:Bounds x="270" y="87" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0b2biyi_di" bpmnElement="InvokeHappiness_ServiceTask">
+        <dc:Bounds x="720" y="87" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1uftfmv_di" bpmnElement="InvokeUnhappiness_ServiceTask">
+        <dc:Bounds x="720" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0vja6rb_di" bpmnElement="Event_0vja6rb">
+        <dc:Bounds x="862" y="222" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="848" y="265" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1idxyey_di" bpmnElement="fake-call-activity">
+        <dc:Bounds x="430" y="87" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0o0imsp_di" bpmnElement="Event_0o0imsp">
+        <dc:Bounds x="1012" y="109" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1005" y="152" width="53" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0afw3xd_di" bpmnElement="Activity_10zzpm8">
+        <dc:Bounds x="860" y="87" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0hpe14c_di" bpmnElement="Flow_0hpe14c">
+        <di:waypoint x="215" y="127" />
+        <di:waypoint x="270" y="127" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0m0qqht_di" bpmnElement="Flow_0m0qqht">
+        <di:waypoint x="370" y="127" />
+        <di:waypoint x="430" y="127" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1sbiucf_di" bpmnElement="Flow_1sbiucf">
+        <di:waypoint x="645" y="127" />
+        <di:waypoint x="720" y="127" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1l1uqja_di" bpmnElement="Flow_1l1uqja">
+        <di:waypoint x="620" y="152" />
+        <di:waypoint x="620" y="240" />
+        <di:waypoint x="720" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1p0xfz6_di" bpmnElement="Flow_1p0xfz6">
+        <di:waypoint x="820" y="127" />
+        <di:waypoint x="860" y="127" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mt9m8e_di" bpmnElement="Flow_1mt9m8e">
+        <di:waypoint x="820" y="240" />
+        <di:waypoint x="862" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0w39ylh_di" bpmnElement="Flow_0w39ylh">
+        <di:waypoint x="530" y="127" />
+        <di:waypoint x="595" y="127" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1heh8g5_di" bpmnElement="Flow_1heh8g5">
+        <di:waypoint x="960" y="127" />
+        <di:waypoint x="1012" y="127" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

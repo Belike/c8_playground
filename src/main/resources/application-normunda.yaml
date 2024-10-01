@@ -1,0 +1,30 @@
+camunda:
+  client:
+    mode: oidc
+    auth:
+      oidc-type: keycloak
+      issuer: https://normunda.de/auth/realms/camunda-platform
+      client-id: zeebe
+      client-secret: XjaV2e3w8EbJkHTq
+    zeebe:
+      enabled: true
+      gateway-url: https://normunda.de
+      base-url: https://normunda.de/zeebe
+      prefer-rest-over-grpc: false
+      audience: zeebe-api
+    operate:
+      enabled: true
+      base-url: https://normunda.de/operate
+      audience: operate-api
+    tasklist:
+      enabled: true
+      base-url: https://normunda.de/tasklist
+      audience: tasklist-api
+    optimize:
+      enabled: false
+      #base-url: https://normunda.de/optimize
+      #audience: optimize-api
+    identity:
+      enabled: true
+      base-url: https://normunda.de/identity
+      audience: identity-api

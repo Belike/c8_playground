@@ -2,13 +2,12 @@ package org.camunda.consulting.worker;
 
 import io.camunda.zeebe.spring.client.annotation.JobWorker;
 import io.camunda.zeebe.spring.client.annotation.VariablesAsType;
-import org.camunda.consulting.service.MyService;
 import org.camunda.consulting.ProcessVariables;
+import org.camunda.consulting.service.MyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
-//@Component
+// @Component
 public class MyWorker {
 
   private static final Logger LOG = LoggerFactory.getLogger(MyWorker.class);

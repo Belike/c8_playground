@@ -1,0 +1,14 @@
+zeebe:
+  client:
+    security:
+      plaintext: true
+    cloud:
+      auth-url: http://norminhio.52.58.117.179.nip.io/auth/realms/camunda-platform/protocol/openid-connect/token
+      port: 26500
+      base-url: localhost:26500
+      client-id: zeebe
+      client-secret: w3pFPalfYv
+
+logging:
+  level:
+    io.camunda.zeebe.client.impl: error

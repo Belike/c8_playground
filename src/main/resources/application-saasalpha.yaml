@@ -4,6 +4,6 @@
 zeebe.client:
   cloud:
     region: bru-2
-    clusterId: 80f6a7e8-1ba1-4fb5-b53c-a92976a05344
-    clientId: dMX_fIpzQpR5PNCaLD4IKPsxRFJjRKwJ
-    clientSecret: vmDAz_7pRAIcIX245PILj3LoaBh45~DN6w~A1T0iAoJ.7B.fF_OMd7BizVzzzUaW
+    clusterId: 0a45435e-25d3-413f-aeef-bdd202145f78
+    clientId: KdJ4P.kD3Z0P3e9USPatgARuFq9.FOfg
+    clientSecret: SGWGCj10b6Yvc8wP6VL3og_ZerJqE_bm5tIDI0cK1alG.yFa~bUze8_4Op0fs_kb
